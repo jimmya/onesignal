@@ -37,6 +37,13 @@ public struct OneSignalNotification: Codable {
     public var users: [String] = []
     
     /**
+     RECOMMENDED - Target specific devices by custom user IDs assigned via API. Not compatible with any other targeting parameters
+     
+     Example: [“custom-id-assigned-by-api”]
+     */
+    public var externalUserIds: [String] = []
+    
+    /**
      NOT RECOMMENDED - Please consider using include_player_ids instead.
      Target using iOS device tokens. Warning: Only works with Production tokens.
      All non-alphanumeric characters must be removed from each token. If a token does not correspond
@@ -218,6 +225,7 @@ extension OneSignalNotification {
         let payload = OneSignalPayload(
             appId: app.appId,
             playerIds: self.users,
+            externalUserIds: self.externalUserIds,
             iosDeviceTokens: self.deviceTokens,
             contents: self.message.messages,
             headings: self.title?.messages,
