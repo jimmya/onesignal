@@ -36,7 +36,7 @@ public struct OneSignalPayload: Content {
     public var externalUserIds: [String]
     public var iosDeviceTokens: [String]?
 
-    public var contents: [String: String]
+    public var contents: [String: String]?
     
     public var headings: [String: String]?
     public var subtitle: [String: String]?

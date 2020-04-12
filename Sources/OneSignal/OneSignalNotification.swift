@@ -83,7 +83,7 @@ public struct OneSignalNotification: Codable {
      
      Example: `{"en": "English Message", "es": "Spanish Message"}`
      */
-    public var message: OneSignalMessage
+    public var message: OneSignalMessage?
     
     /**
      Category APS payload, use with `registerUserNotificationSettings:categories` in your Objective-C / Swift code.
@@ -175,6 +175,8 @@ public struct OneSignalNotification: Codable {
         self.additionalData = additionalData
         self.attachments = attachments
     }
+    
+    public init() { }
 }
 
 extension OneSignalNotification {
@@ -183,7 +185,7 @@ extension OneSignalNotification {
     }
     
     public mutating func addMessage(_ message: String, language: String = "en") {
-        self.message[language] = message
+        self.message?[language] = message
     }
 }
 
@@ -227,7 +229,7 @@ extension OneSignalNotification {
             playerIds: self.users,
             externalUserIds: self.externalUserIds,
             iosDeviceTokens: self.deviceTokens,
-            contents: self.message.messages,
+            contents: self.message?.messages,
             headings: self.title?.messages,
             subtitle: self.subtitle?.messages,
             category: self.category,
