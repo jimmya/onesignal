@@ -26,6 +26,8 @@ public struct OneSignalNotification: Codable {
         
         case isContentAvailable = "content_available"
         case isContentMutable = "mutable_content"
+        
+        case threadId = "thread_id"
     }
     
     /**
@@ -143,6 +145,11 @@ public struct OneSignalNotification: Codable {
      */
     public var isContentMutable: Bool?
     
+    /**
+     This parameter is supported in iOS 12 and above. It allows you to group related notifications together.
+     If two notifications have the same thread-id, they will both be added to the same group.
+     */
+    public var threadId: String?
     
     public init(message: String) {
         self.message = OneSignalMessage(message)
